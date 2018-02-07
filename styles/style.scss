@@ -1,0 +1,68 @@
+@import 'normalize';
+@import 'variables';
+@import 'typography';
+@import 'mixins';
+@import 'components';
+
+
+
+/*----------------------------------------
+    all sections
+----------------------------------------*/
+.wrapper {
+    width: 80%;
+    max-width: 1150px;
+    margin: 0 auto;
+    @media (max-width: $break-large) {
+        width: 95%;
+    } 
+}
+
+// header wrapper will be full width in mobile
+header.wrapper {
+    @media (max-width: $break-med) {
+        width: 100%;
+    } 
+}
+
+.visuallyHidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; }
+
+section {
+    margin-bottom: 50px;
+    padding: 50px 0;
+}
+
+.wrap--small {
+    width: 90%;
+    margin: 0 auto;
+    @media (max-width:$break-med) {
+        width: 95%;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+
+
+//------------
+
+.questionBlock {
+    display: block;
+    margin-top: 40px;
+}
+
+input[type="radio"] {
+    display: inline-block;
+    margin: 20px;
+}
+//--------------
