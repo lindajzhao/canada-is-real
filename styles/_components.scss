@@ -1,0 +1,28 @@
+// buttons
+
+@mixin btn--large($bgcolor, $textcolor) {
+    background: $bgcolor;
+    color: $textcolor;
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    transition: 0.5s background ease-in-out;
+    &:hover, &:focus {
+        background: lighten($bgcolor, 10%);
+    }
+}
+
+.btn__play {
+    @include btn--large($color-dark, #fff);
+}
+
+.btn__answer {
+    padding: 1.5rem 2rem;
+    // background: gray;
+    border: 2px solid blue;
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    min-height: 75px;
+    @include setFont(3rem, rgb(12, 138, 138), 400)
+    
+}

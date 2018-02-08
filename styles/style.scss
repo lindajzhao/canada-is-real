@@ -55,14 +55,49 @@ img {
 
 
 //------------
-
+// .quizArea {
+//     display: none;
+// }
 .questionBlock {
     display: block;
     margin-top: 40px;
+    padding: 80px 0;
+    // height: 80vh;
+    background: $color-ac2;
+    position: relative; 
+
+    .wrapper {
+        z-index: 30;
+    }
 }
 
-input[type="radio"] {
-    display: inline-block;
-    margin: 20px;
+.answerArea {
+    margin-top: 50px;
 }
-//--------------
+
+form {
+
+}
+
+//---------------------
+// header
+// --------------------
+
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    background: white;
+    z-index: 10;
+
+}
+
+.description {
+    background: url('/assets/hero.jpg');
+    background-size: cover;
+    .wrapper {
+        @include flexCenter(column);
+        min-height: 50vh;
+        justify-content: space-around;
+
+    }
+}
