@@ -32,12 +32,12 @@ canQuiz.masterQuestionListArr = [
         title: "coin",
         question: "What exotic creature was featured on a limited-edition silver coin?",
         questionDesc: "There is an unicorn on the Canadian Coat of Arms.",
-        correctChoice: "a",
+        correctChoice: "c",
         choices: {
-            a: "Narwhal",
+            a: "Killer Whale",
             b: "Dragon",
-            c: "Gryffin",
-            d: "Platypus"
+            c: "Narwhal",
+            d: "Griffin"
         },
         answerDesc: "The Narwhal was featured on a half kilogram fine silver coin, minted in 2015.",
     },
@@ -53,10 +53,10 @@ canQuiz.masterQuestionListArr = [
         answerDesc: "James Gosling from Calgary, Alberta, authored Java in 1995.",
     },
     {
-        title: "bears",
+        title: "mascots",
         question: "True or False? Hidy and Howdy were the mascots at the 1988 Calgary Winter Olympics. They popularized usage of the phrase 'Howdy!' in Canada",
         questionDesc: "They were suuper popular!",
-        correctChoice: "a",
+        correctChoice: "b",
         choices: {
             a: "True",
             b: "False"
@@ -78,15 +78,19 @@ canQuiz.masterQuestionListArr = [
     },
 ];
 
+canQuiz.playerScore = 0;
 canQuiz.events = () => {
     $('.btn__play').on('click', function() {
         console.log('clicked play button');
-        canQuiz.playGame(); 
+        canQuiz.startQuiz(); 
     });
 };
 
+canQuiz.init = () => {
 
-canQuiz.playGame = () => {
+}
+
+canQuiz.startQuiz = () => {
     // show the quizArea (default hidden)
     $(".quizArea").show();
 
@@ -96,39 +100,18 @@ canQuiz.playGame = () => {
 
         // i + 1 to get 1-6!
         canQuiz.showAQuestion(currentQuestion, i+1);
-        canQuiz.populateAnswerField(currentQuestion, i+1);
 
-    }
-
-    // start this event handler. When an answer button (.btn__answer) is clicked, check if answer is correct.
-    // if correct: make border green
-    // if incorrect: make border red
-    // select the parent(.answerArea) b/c .btn__answer is generated
-    $('.answerArea').on('click', ".btn__answer", function (e) {
-        e.preventDefault();
-        // this = button.btn__answer
-        console.log($(this));
         
-        // userAnswer = this.val = a/b/c/d
-        userAnswer = $(this).val();
+    }  // end loop
 
-        // console.log($(this).val());
-        
-        // get the data-bankQuestionNum associated with this question (dynamically added with populateAnswerField() )
-        const userQuestionBankNum = $(this).dataset.banknum;
-        console.log(userQuestionBankNum);
-
-
-
-        canQuiz.isAnswerCorrect(userAnswer);
+    $(".answerArea").on("click", ".btn__answer", function(e) {
+      e.preventDefault();
+      canQuiz.isAnswerCorrect($(this));
     });
-    
-};
 
-canQuiz.isAnswerCorrect = (userAnswer) => {
-    console.log(userAnswer);
-    // if (userAnswer = )
-}
+    
+
+};
 
 canQuiz.showAQuestion = (currentQuestion, i) => {
     // append questionDesc to paragraph
@@ -136,10 +119,11 @@ canQuiz.showAQuestion = (currentQuestion, i) => {
     
     // append question to question h3
     $(`.question${i} .heading--question`).append(`${currentQuestion.question}`);
+
+    canQuiz.populateAnswerField(currentQuestion, i);
 };
 
 canQuiz.populateAnswerField = (currentQuestion, i) => {
-
     // iterate twice for T/F and 4 times for M/C
     for(key in currentQuestion.choices){
         // properties of question: value, class, data-bankQuestionNum
@@ -148,16 +132,62 @@ canQuiz.populateAnswerField = (currentQuestion, i) => {
         <button value = "${key}" class="btn__answer" data-banknum = "${i}">${currentQuestion.choices[key]}</button>`
         );
     }
-
 };
 
+canQuiz.isAnswerCorrect = (clickedButton) => {
+  // start this event handler. When an answer button (.btn__answer) is clicked, check if answer is correct.
+
+    // this = button.btn__answer
+    // userAnswer = this.val = a/b/c/d
+    const userAnswer = clickedButton.val();
+
+    // -1 because question banknum starts from 0.
+    const bankQuestionNum = clickedButton.data("banknum") - 1;
+    const currentQuestion = canQuiz.masterQuestionListArr[bankQuestionNum];
+
+    const correctAnswer = canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice;
+
+    // ??? how do i select the correct answer??
+    const correctAnswerButton = $(`.btn__answer[value="${correctAnswer}"][data-banknum="${bankQuestionNum}]"`);
+    // console.log("correst answer button is  ", correctAnswerButton);
+    // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
+    // console.log("current question is ", currentQuestion)
+    // console.log("user answer is ",userAnswer);
+
+    
+    // console.log("the banknum of clicked button is ", bankQuestionNum);
+
+    // console.log("current ans should be", correctAnswer);
+
+    if (canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice === userAnswer) {
+        canQuiz.incrementAndUpdateScore(clickedButton);
+        clickedButton.addClass("btn--rightAns");
+    } else {
+        clickedButton.addClass("btn--wrongAns");
+    }
+
+};
+    
+canQuiz.incrementAndUpdateScore = (clickedButton) => {
+    // do not add a point if it's already been clicked.
+    if(!clickedButton.hasClass('btn--rightAns')) {
+        canQuiz.playerScore++;
+        console.log(`clicked on ${clickedButton} add a point! Now you have ${canQuiz.playerScore} points`);
+        $('.scoreArea span').text(`${canQuiz.playerScore}`);
+    };
+};
+
+canQuiz.showCorrectAnswer(currentQuestion) {
+
+};
 
 $(function() {
 // console.log("ready");
 // $('.quizArea').hide();
-canQuiz.playGame();
+canQuiz.startQuiz();
     // canQuiz.isAnswerCorrect();
 canQuiz.events();
+canQuiz.init();
 
 
     

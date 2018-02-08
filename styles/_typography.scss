@@ -11,6 +11,11 @@ $text-fancy: 'Pacifico', cursive;
 // Normalize typography
 body {
     font-family: $text-font;
+    background-color: #ffffff;
+    background-image: $bg-gradient;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
 }
 
 html {
@@ -57,7 +62,7 @@ h1 {
         font-family: $text-fancy;
         font-size: 300px;
         position: absolute;
-        top: 20px;
+        top: -90px;
         left: -20px;
         z-index: 10;
         color: rgba(122, 122, 122, 0.5);

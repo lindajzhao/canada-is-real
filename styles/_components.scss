@@ -26,3 +26,13 @@
     @include setFont(3rem, rgb(12, 138, 138), 400)
     
 }
+
+.btn--rightAns {
+    border: 5px solid green;
+    background: rgba(green, 0.5);
+    color: white;
+}
+
+.btn--wrongAns {
+    border: 5px solid red;
+}

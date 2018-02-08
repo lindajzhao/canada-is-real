@@ -36,8 +36,8 @@ header.wrapper {
     width: 1px; }
 
 section {
-    margin-bottom: 50px;
-    padding: 50px 0;
+    margin-bottom: 30px;
+    padding: 40px 0;
 }
 
 .wrap--small {
@@ -55,9 +55,9 @@ img {
 
 
 //------------
-// .quizArea {
-//     display: none;
-// }
+.quizArea {
+    // display: none;
+}
 .questionBlock {
     display: block;
     margin-top: 40px;
@@ -75,8 +75,14 @@ img {
     margin-top: 50px;
 }
 
-form {
-
+.scoreArea {
+    width: 100%;
+    background: white;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    min-height: 50px;
+    padding: 10px 20px;
 }
 
 //---------------------
@@ -92,12 +98,11 @@ header {
 }
 
 .description {
-    background: url('/assets/hero.jpg');
+    background: url('../assets/hero.jpg') center;
     background-size: cover;
     .wrapper {
         @include flexCenter(column);
-        min-height: 50vh;
+        min-height: 25vh;
         justify-content: space-around;
-
     }
 }
