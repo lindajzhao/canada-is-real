@@ -168,17 +168,17 @@ canQuiz.startQuiz = () => {
     $(".quizArea").show();
     // const randomListOfQs = canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
 
-    const shortList = canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
+    canQuiz.shortList = canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
 
     for (let i = 0; i < 6; i++) {
         // this is the question it's looping through
         // let currentQuestion = randomListOfQs[i];
         // let currentQuestion = canQuiz.masterQuestionListArr[randomListOfQs[i]];
         // let currentQuestion = canQuiz.masterQuestionListArr[i];
-        let currentQuestion =  shortList[i];
+        let currentQuestion =  canQuiz.shortList[i];
         // console.log()
         
-        console.log(currentQuestion);
+        // console.log(currentQuestion);
         // console.log(randomListOfQs[i]);
         // i + 1 to get 1-6!
         canQuiz.showAQuestion(currentQuestion, i+1);
@@ -194,9 +194,11 @@ canQuiz.chooseBanknumArr = (bankOfQs) => {
       // ??????
       arr[arr.length] = canQuiz.masterQuestionListArr[aRandoBanknum];
     } 
+    // console.log(arr);
     return arr;
-   
+
 };
+
 
 
 canQuiz.showAQuestion = (currentQuestion, i) => {
@@ -211,13 +213,18 @@ canQuiz.showAQuestion = (currentQuestion, i) => {
 
 canQuiz.populateAnswerField = (currentQuestion, i) => {
     // iterate twice for T/F and 4 times for M/C
+    // console.log(currentQuestion);
+    // console.log(canQuiz.shortList);
+    canQuiz.questionInBankArr = canQuiz.shortList.indexOf(currentQuestion);
+    // console.log("this is the question in short list: ", canQuiz.questionInBankArr);
+
     for(key in currentQuestion.choices){
         // properties of question: value, class, data-bankQuestionNum
         // key is "a" - "d"
         $(`.question${i} .answerArea`).append(`
-        <button value = "${key}" class="btn__answer" data-banknum = "${i}">${currentQuestion.choices[key]}</button>`
+        <button value = "${key}" class="btn__answer" data-banknum = "${canQuiz.questionInBankArr}">${currentQuestion.choices[key]}</button>`
         );
-    }
+    };
 };
 
 canQuiz.isAnswerCorrect = (clickedButton) => {
@@ -228,17 +235,20 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     const userAnswer = clickedButton.val();
 
     // -1 because question banknum starts from 0.
-    const bankQuestionNum = clickedButton.data("banknum") - 1;
-    const currentQuestion = canQuiz.masterQuestionListArr[bankQuestionNum];
-
-    const correctAnswer = canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice;
+    // const bankQuestionNum = clickedButton.data("banknum");
+    // const currentQuestion = canQuiz.masterQuestionListArr[bankQuestionNum];
+    // const correctAnswer = canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice;
+    
+    // currentQuestion should be which index is this q in the masterArr?
+    const currentQuestion = canQuiz.masterQuestionListArr[canQuiz.questionInBankArr];
+    const correctAnswer = canQuiz.masterQuestionListArr[canQuiz.questionInBankArr].correctChoice;
 
     // how do i select the correct answer??
-    const correctAnswerButton = $(`.btn__answer[value="${correctAnswer}"][data-banknum="${bankQuestionNum}]"`);
+    const correctAnswerButton = $(`.btn__answer[value="${correctAnswer}"][data-banknum="${canQuiz.questionInBankArr}]"`);
     // console.log("correst answer button is  ", correctAnswerButton);
-    // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
-    // console.log("current question is ", currentQuestion)
-    // console.log("user answer is ",userAnswer);
+    // // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
+    console.log("current question is ", currentQuestion)
+    console.log("user answer is ",userAnswer);
  
     
     // console.log("the banknum of clicked button is ", bankQuestionNum);
@@ -247,7 +257,7 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     // if 
 
 
-    if (canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice === userAnswer) {
+    if (correctAnswer === userAnswer) {
         canQuiz.incrementAndUpdateScore(clickedButton);
         clickedButton.addClass("btn--rightAns");
     } else {
