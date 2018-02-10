@@ -78,16 +78,49 @@ canQuiz.masterQuestionListArr = [
     },
 ];
 
+canQuiz.masterResults = {
+    lowScoreResults: ["Wah wah wahhh", "Brush up on your Canadiana, eh?", "You just made a polar bear cry :("],
+    middleScoreResults: ["Pretty good!", "You know your Canada!", "Not bad, eh!"],
+    highScoreResults: ["True Patriot!", "Maple syrup flows through your veins!", "A Canadian Legend, eh?"],
+};
+
 canQuiz.playerScore = 0;
+canQuiz.playerAnsweringQuestion = 1;
+
+
 canQuiz.events = () => {
+    // when play button is pressed
     $('.btn__play').on('click', function() {
-        console.log('clicked play button');
         canQuiz.startQuiz(); 
+        // disable play button once it is clicked
+        $(this).attr("disabled", true);
+    });
+
+    // when an answer button is clicked
+    $(".answerArea").on("click", ".btn__answer", function(e) {
+      e.preventDefault();
+      canQuiz.isAnswerCorrect($(this));
+      // once user clicks one answer button, disable all answer buttons for that question
+      $(`.btn__answer[data-banknum="${$(this).data('banknum')}"]`).attr("disabled", true);
+
+          
+        //increment counter
+        canQuiz.playerAnsweringQuestion++;
+        console.log(canQuiz.playerAnsweringQuestion);
+
+    });
+
+    // when last answer is chosen, show final score and results
+    $('.btn__last').on('click', function() {
+        canQuiz.displayFinalResult(canQuiz.playerScore);
     });
 };
 
 canQuiz.init = () => {
-
+    $(".answerDescArea").hide();
+    $(".quizArea").hide();
+    //smoothscroll
+    var scroll = new SmoothScroll('a[href*="#"]');
 }
 
 canQuiz.startQuiz = () => {
@@ -97,20 +130,11 @@ canQuiz.startQuiz = () => {
     for (let i = 0; i < 6; i++) {
         // this is the question it's looping through
         let currentQuestion = canQuiz.masterQuestionListArr[i];
-
+        
         // i + 1 to get 1-6!
         canQuiz.showAQuestion(currentQuestion, i+1);
 
-        
     }  // end loop
-
-    $(".answerArea").on("click", ".btn__answer", function(e) {
-      e.preventDefault();
-      canQuiz.isAnswerCorrect($(this));
-    });
-
-    
-
 };
 
 canQuiz.showAQuestion = (currentQuestion, i) => {
@@ -153,11 +177,13 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
     // console.log("current question is ", currentQuestion)
     // console.log("user answer is ",userAnswer);
-
+ 
     
     // console.log("the banknum of clicked button is ", bankQuestionNum);
 
     // console.log("current ans should be", correctAnswer);
+    // if 
+
 
     if (canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice === userAnswer) {
         canQuiz.incrementAndUpdateScore(clickedButton);
@@ -165,77 +191,61 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     } else {
         clickedButton.addClass("btn--wrongAns");
     }
+    canQuiz.showCorrectAnswerDesc(currentQuestion);
 
 };
     
 canQuiz.incrementAndUpdateScore = (clickedButton) => {
     // do not add a point if it's already been clicked.
+
+    
     if(!clickedButton.hasClass('btn--rightAns')) {
         canQuiz.playerScore++;
-        console.log(`clicked on ${clickedButton} add a point! Now you have ${canQuiz.playerScore} points`);
+        // console.log(`add a point! Now you have ${canQuiz.playerScore} points`);
         $('.scoreArea span').text(`${canQuiz.playerScore}`);
+
     };
 };
 
-canQuiz.showCorrectAnswer(currentQuestion) {
+canQuiz.showCorrectAnswerDesc = (currentQuestion) => {
+    const currentAnswerDesc = currentQuestion.answerDesc;
+    // console.log(canQuiz.playerAnsweringQuestion);
+    console.log(currentAnswerDesc);
 
+
+    const displayThis = `.question${canQuiz.playerAnsweringQuestion}`;
+    // console.log(canQuiz.playerAnsweringQuestion);
+    // ?????????
+    $(".answerDescArea p").text(currentAnswerDesc);
+    $(displayThis + " .answerDescArea").show();
+
+    // if(currentQuestion === "6") {
+    //     console.log('this q is 6');
+    // }
+};
+
+canQuiz.displayFinalResult = (finalScore) => {
+    const randNum = Math.floor(Math.random() * 3);
+    // console.log(finalScore);
+    if(finalScore === 6) {
+        $('.results p').text(canQuiz.masterResults.highScoreResults[randNum]);
+        console.log(`score is 6`);
+    } else if (finalScore >= 4 && finalScore < 6 ) {
+        $('.results p').text(canQuiz.masterResults.middleScoreResults[randNum]);
+        console.log(`score is 4 or 5`);
+    } else {
+        $(".results p").text(canQuiz.masterResults.lowScoreResults[randNum]);
+        console.log(`score is 0, 1, 2, or 3`);
+    }
 };
 
 $(function() {
-// console.log("ready");
-// $('.quizArea').hide();
-canQuiz.startQuiz();
-    // canQuiz.isAnswerCorrect();
+
 canQuiz.events();
 canQuiz.init();
+// canQuiz.startQuiz();
+
 
 
     
 }); // end of "ready"
-
-
-// masterQuestionList
-// -----
-// show question and choices in dom
-// repeat 6 times
-// ----
-// keeping score 
-// - add when correctChoice is chosen
-// - display score at the end
-
-// -----
-// currentQuestion
-// - display this all the time (1/6, 4/6 etc)
-// - don't show if 0: game hasn't started yet
-
-// ----
-// when user clicks:
-// - recalc userScore
-// - add 1 to currentQuestion
-// - scroll to next question
-
-
-// -----
-// html: radio. name is question, id is choices. 
-// add questions, choices on load
-// add answer on submit
-// add to userScore
-
-// ----
-// randomize question selection
-// - random number
-// - don't show questions that have been answered already
-// - choose next question one at a time after each answerclick
-
-// ----
-// replay
-
-// - score resets to 0
-// - current q resets to 0
-// - take user to beginning
-// - reset question pool
-
-
-
-
-

@@ -1,14 +1,27 @@
 // buttons
+button {
+    transition: 0.5s ease;
+};
 
 @mixin btn--large($bgcolor, $textcolor) {
     background: $bgcolor;
     color: $textcolor;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 2rem;
     font-size: 1.6rem;
     transition: 0.5s background ease-in-out;
     &:hover, &:focus {
         background: lighten($bgcolor, 10%);
     }
+}
+
+@mixin btn--small($bgcolor, $textcolor) {
+    background: $bgcolor;
+    color: $textcolor;
+    padding: 0.8rem;
+    transition: 0.5s background;
+    // &:hover, &:focus {
+    //     background: $blue;
+    // }
 }
 
 .btn__play {
@@ -17,13 +30,12 @@
 
 .btn__answer {
     padding: 1.5rem 2rem;
-    // background: gray;
-    border: 2px solid blue;
+    border: 5px solid transparent;
     display: inline-block;
     width: 100%;
     margin-top: 10px;
     min-height: 75px;
-    @include setFont(3rem, rgb(12, 138, 138), 400)
+    @include setFont(3rem, black, 400)
     
 }
 
@@ -35,4 +47,12 @@
 
 .btn--wrongAns {
     border: 5px solid red;
+    background: rgba(red, 0.5);
+    color: white;
+}
+
+.btn__next {
+    @include btn--small(rgba(black, 0.2), black)
+    // width: 50%;
+    // margin: 0 auto;
 }

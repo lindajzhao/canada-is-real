@@ -9,10 +9,18 @@
 /*----------------------------------------
     all sections
 ----------------------------------------*/
+body {
+    font-family: $text-font;
+    background: url('../assets/mountain-bg.jpg') center no-repeat;
+    background-size: cover;
+    // min-height: 100vh;
+}
+
 .wrapper {
     width: 80%;
     max-width: 1150px;
     margin: 0 auto;
+    background: rgba(white, 0.7);
     @media (max-width: $break-large) {
         width: 95%;
     } 
@@ -38,6 +46,7 @@ header.wrapper {
 section {
     margin-bottom: 30px;
     padding: 40px 0;
+    
 }
 
 .wrap--small {
@@ -46,35 +55,47 @@ section {
     @media (max-width:$break-med) {
         width: 95%;
     }
+    
 }
 
 img {
     width: 100%;
 }
 
+//----- JS classes
+
+// .hide {
+//     display: none;
+// }
 
 
 //------------
-.quizArea {
-    // display: none;
-}
+
 .questionBlock {
     display: block;
     margin-top: 40px;
     padding: 80px 0;
     // height: 80vh;
-    background: $color-ac2;
     position: relative; 
+    z-index: 30;
 
     .wrapper {
-        z-index: 30;
     }
+
+    // &:first-of-type {
+    //     margin-top: 0;
+    // }
 }
 
 .answerArea {
     margin-top: 50px;
 }
 
+.answerDescArea {
+    width: 90%;
+    margin-left: 5%;
+
+}
 .scoreArea {
     width: 100%;
     background: white;
@@ -85,11 +106,13 @@ img {
     padding: 10px 20px;
 }
 
+
 //---------------------
 // header
 // --------------------
 
 header {
+    @include flexCenter(column);
     display: flex;
     flex-wrap: nowrap;
     background: white;
@@ -98,8 +121,7 @@ header {
 }
 
 .description {
-    background: url('../assets/hero.jpg') center;
-    background-size: cover;
+    margin-bottom: 0;
     .wrapper {
         @include flexCenter(column);
         min-height: 25vh;

@@ -9,17 +9,10 @@ $text-font: 'Merriweather', serif;
 $text-fancy: 'Pacifico', cursive;
 
 // Normalize typography
-body {
-    font-family: $text-font;
-    background-color: #ffffff;
-    background-image: $bg-gradient;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-}
+
 
 html {
-    font-size: 80.5%;
+    font-size: 62.5%;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, ul, li, blockquote {
@@ -51,21 +44,61 @@ li {
 
 h1 {
     font-family: $text-fancy;
-    font-size: 50px;
-
+    font-size: 5rem;
 }
 
+.heading-- {
+    &question {
+        font-size: 3rem;
+        margin-top: 20px;
+    }
+}
 //-------- DISPLAY -------------
 
 .display {
     &--bigLetter {
         font-family: $text-fancy;
-        font-size: 300px;
+        font-size: 30rem;
         position: absolute;
-        top: -90px;
-        left: -20px;
+        top: 200px;
+        left: -40px;
         z-index: 10;
-        color: rgba(122, 122, 122, 0.5);
+        color: rgba($text-gray, 0.8);
+        line-height: 0;
         pointer-events:none;
+    }
+}
+
+//--------TEXT-------
+
+.text-- {
+    &questionDesc {
+        // font-style: italic;
+        // font-weight: 400;
+        font-size: 1.6rem;
+        margin-top: 10px;
+        padding: 10px 30px 10px 60px;
+        background: $color-light;
+        color: black;
+        // margin-left: 10%;
+        display: inline-block;
+        border-radius: 30px;
+        position: relative;
+
+        img {
+            width: 49px;
+            position: absolute;
+            left: 7px;
+            top: -8px;
+            transform: rotate(-15deg);
+        }
+    }
+
+    &answerDesc {
+        @extend .text--questionDesc;
+        margin-top: 30px;
+        padding: 40px 80px;
+        width: 100%;
+        background: lighten($color-light, 15);
     }
 }
