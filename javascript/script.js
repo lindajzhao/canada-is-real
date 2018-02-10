@@ -168,13 +168,17 @@ canQuiz.startQuiz = () => {
     $(".quizArea").show();
     // const randomListOfQs = canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
 
+    const shortList = canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
+
     for (let i = 0; i < 6; i++) {
         // this is the question it's looping through
         // let currentQuestion = randomListOfQs[i];
         // let currentQuestion = canQuiz.masterQuestionListArr[randomListOfQs[i]];
-        let currentQuestion = canQuiz.masterQuestionListArr[i];
+        // let currentQuestion = canQuiz.masterQuestionListArr[i];
+        let currentQuestion =  shortList[i];
+        // console.log()
         
-        // console.log(currentQuestion);
+        console.log(currentQuestion);
         // console.log(randomListOfQs[i]);
         // i + 1 to get 1-6!
         canQuiz.showAQuestion(currentQuestion, i+1);
@@ -187,10 +191,11 @@ canQuiz.chooseBanknumArr = (bankOfQs) => {
     while (arr.length < 6) {
       let aRandoBanknum = Math.floor(Math.random() * bankOfQs.length );
       if (arr.indexOf(aRandoBanknum) > -1) continue;
-      arr[arr.length] = aRandoBanknum;
-    }
+      // ??????
+      arr[arr.length] = canQuiz.masterQuestionListArr[aRandoBanknum];
+    } 
     return arr;
-    console.log(bankOfQs);
+   
 };
 
 
@@ -292,6 +297,8 @@ $(function() {
 canQuiz.events();
 canQuiz.init();
 canQuiz.startQuiz();
+
+canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
 
 
 
