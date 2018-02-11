@@ -164,10 +164,10 @@ li {
   font-family: "Pacifico", cursive;
   font-size: 30rem;
   position: absolute;
-  top: 300px;
-  left: -40px;
+  top: 230px;
+  left: 0;
   z-index: 10;
-  color: rgba(136, 136, 144, 0.8);
+  color: rgba(136, 136, 144, 0.5);
   line-height: 0; }
 
 p {
