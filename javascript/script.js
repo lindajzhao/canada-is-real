@@ -41,7 +41,7 @@ canQuiz.masterQuestionListArr = [
       c: "Narwhal",
       d: "Griffin"
     },
-    answerDesc: `<a href="http://www.mint.ca/store/coins/half-kilogram-fine-silver-coin-%E2%80%93-conservation-series-the-narwhal-%E2%80%93-mintage-500-2015-prod2530329">The Narwhal was featured on a half kilogram fine silver coin, minted in 2015.</a>`
+    answerDesc: `<a href="http://www.mint.ca/store/coins/half-kilogram-fine-silver-coin-%E2%80%93-conservation-series-the-narwhal-%E2%80%93-mintage-500-2015-prod2530329">The Narwhal</a> was featured on a half kilogram fine silver coin, minted in 2015.`
   },
   {
     question:
@@ -52,23 +52,24 @@ canQuiz.masterQuestionListArr = [
       a: "True",
       b: "False"
     },
-    answerDesc: '<a href="http://www.cbc.ca/news/canada/calgary/java-creator-remembers-steve-jobs-1.1051435">James Gosling</a> from Calgary, Alberta, authored Java in 1995.'
+    answerDesc:
+      '<a href="http://www.cbc.ca/news/canada/calgary/java-creator-remembers-steve-jobs-1.1051435">James Gosling</a> from Calgary, Alberta, authored Java in 1995.'
   },
   {
     question:
-      "True or False? Hidy and Howdy were the mascots at the 1988 Calgary Winter Olympics. They popularized usage of the phrase 'Howdy!' in Canada",
-    questionDesc: "They were suuper popular!",
+      "True or False? Hidy and Howdy were the polar bear mascots at the 1988 Calgary Winter Olympics. They popularized usage of the phrase 'Howdy!' in Canada",
+    questionDesc: "Bears are fluffy!",
     correctChoice: "b",
     choices: {
       a: "True",
       b: "False"
     },
-    answerDesc: "James Gosling from Calgary, Alberta, authored Java in 1995."
+    answerDesc: "Nope! I made that up :D"
   },
   {
     question:
       "Anyone can call the Canadian government for general information about the country. What is that phone number?",
-    questionDesc: "wow cool fact",
+    questionDesc: "Useful tip for people who haven't heard of Google",
     correctChoice: "b",
     choices: {
       a: "1-800-MPL-LEAF",
@@ -76,7 +77,7 @@ canQuiz.masterQuestionListArr = [
       c: "1-800-BVR-TOWN",
       d: "1-800-GO-LEAFS"
     },
-    answerDesc: "https://www.canada.ca/en/contact/contact-1-800-o-canada.html"
+    answerDesc: "For those times you're really in the mood to wait on hold for 30 minutes. 😉"
   },
   {
     question:
@@ -86,16 +87,16 @@ canQuiz.masterQuestionListArr = [
     correctChoice: "",
     choices: {
       a: "Clothes hangers specifically for pants",
-      b: "Magic Eye Technology(optical illusion posters)",
+      b: "Magic Eye Technology (optical illusion posters)",
       c: "Microwave popcorn",
-      d: "The LongPen(for remote writing)"
+      d: "The LongPen (for remote writing)"
     },
     answerDesc:
       "Atwood invented the LongPen is that she wouldn't have to go on long book tours to greet fans and sign autographs."
   },
   {
     question:
-      "True or False? The tiny town of St.Paul, Aberta is home to the world's first UFO landing pad? They are still waiting for their first Visitor.",
+      "True or False? The tiny town of St.Paul, Aberta is home to the world's first UFO landing pad. ",
     questionDesc: "If you build it, they will come.",
     correctChoice: "a",
     choices: {
@@ -103,25 +104,25 @@ canQuiz.masterQuestionListArr = [
       b: "False"
     },
     answerDesc:
-      '<a href="http://www.cbc.ca/archives/entry/an-invitation-thats-out-of-this-world">True fact</a>'
+      '<a href="http://www.cbc.ca/archives/entry/an-invitation-thats-out-of-this-world">True fact!</a> They are still waiting for their first <em>Visitor.</em>'
   },
   {
     question:
-      "True or False? The new Canadian bills caused a kerfuffle among botanists when it first came out because it featured the wrong species of maple leaf.",
+      "True or False? Botanists claim that new bills feature the wrong species of maple leaf.",
     questionDesc:
-      "The new polymer bills are rip-proof, water-proof and 120% more photogenic. 📷",
+      "The new polymer bills are rip-proof, water-proof and 120% more photogenic 📷",
     correctChoice: "a",
     choices: {
       a: "True",
       b: "False"
     },
     answerDesc:
-      '<a href="https://www.reuters.com/article/us-maple/canada-put-wrong-maple-leaf-on-new-canadian-dollar-20-bill-expert-idUSBRE90H16S20130118">Experts claimed that the bills used a Norway species of maple rather than the sugar maple.</a>'
+      '<a href="https://www.reuters.com/article/us-maple/canada-put-wrong-maple-leaf-on-new-canadian-dollar-20-bill-expert-idUSBRE90H16S20130118">True! Angry experts claimed that the bills used a Norway species of maple rather than the sugar maple.</a>'
   }
 ];
 
 canQuiz.masterResults = {
-    lowScoreResults: ["You did bad but learned a lot, so good job!", "Brush up on your Canadiana, eh?", "You just made a polar bear cry :("],
+    lowScoreResults: ["Well... At least you learned something new!", "Brush up on your Canadiana, eh?", "Sorry you did not win, roll up the rim again!"],
     middleScoreResults: ["Pretty good!", "You know your Canada!", "Not bad, eh!"],
     highScoreResults: ["True Patriot!", "Maple syrup flows through your veins!", "A Canadian Legend, eh?"],
 };
@@ -131,14 +132,14 @@ canQuiz.playerAnsweringQuestion = 1;
 
 
 canQuiz.events = () => {
-    // when play button is pressed
+    // when play button is pressed, startQuiz()
     $('.btn__play').on('click', function() {
         canQuiz.startQuiz(); 
         // disable play button once it is clicked
         $(this).attr("disabled", true);
     });
 
-    // when an answer button is clicked
+    // when an answer button is clicked, check isAnswerCorrect()
     $(".answerArea").on("click", ".btn__answer", function(e) {
       e.preventDefault();
       canQuiz.isAnswerCorrect($(this));
@@ -154,13 +155,23 @@ canQuiz.events = () => {
     $('.btn__last').on('click', function() {
         canQuiz.displayFinalResult(canQuiz.playerScore);
     });
+
+    $('.btn__playAgain').on('click', function() {
+      window.location.reload(true); 
+    })
+
 };
 
 canQuiz.init = () => {
     $(".answerDescArea").hide();
     $(".quizArea").hide();
+    $(".resultsArea").hide();
+    $(".btn__next").hide();
     //smoothscroll
-    var scroll = new SmoothScroll('a[href*="#"]');
+    var scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 1000,
+      easing: "easeOutQuad"
+    });
 }
 
 canQuiz.startQuiz = () => {
@@ -172,14 +183,9 @@ canQuiz.startQuiz = () => {
 
     for (let i = 0; i < 6; i++) {
         // this is the question it's looping through
-        // let currentQuestion = randomListOfQs[i];
-        // let currentQuestion = canQuiz.masterQuestionListArr[randomListOfQs[i]];
-        // let currentQuestion = canQuiz.masterQuestionListArr[i];
+
         let currentQuestion =  canQuiz.shortList[i];
-        // console.log()
-        
-        // console.log(currentQuestion);
-        // console.log(randomListOfQs[i]);
+
         // i + 1 to get 1-6!
         canQuiz.showAQuestion(currentQuestion, i+1);
 
@@ -187,19 +193,17 @@ canQuiz.startQuiz = () => {
 };
 
 canQuiz.chooseBanknumArr = (bankOfQs) => {
+    // this function returns an array of 6 numbers
     const arr = [];
     while (arr.length < 6) {
       let aRandoBanknum = Math.floor(Math.random() * bankOfQs.length );
-      if (arr.indexOf(aRandoBanknum) > -1) continue;
-      // ??????
+      // make each num unique
+      if (arr.indexOf(bankOfQs[aRandoBanknum]) > -1) continue;
+    
       arr[arr.length] = canQuiz.masterQuestionListArr[aRandoBanknum];
     } 
-    // console.log(arr);
     return arr;
-
 };
-
-
 
 canQuiz.showAQuestion = (currentQuestion, i) => {
     // append questionDesc to paragraph
@@ -212,19 +216,15 @@ canQuiz.showAQuestion = (currentQuestion, i) => {
 };
 
 canQuiz.populateAnswerField = (currentQuestion, i) => {
-    // iterate twice for T/F and 4 times for M/C
-    // console.log(currentQuestion);
-    // console.log(canQuiz.shortList);
-    canQuiz.questionInBankArr = canQuiz.shortList.indexOf(currentQuestion);
-    // console.log("this is the question in short list: ", canQuiz.questionInBankArr);
-
-    for(key in currentQuestion.choices){
-        // properties of question: value, class, data-bankQuestionNum
-        // key is "a" - "d"
-        $(`.question${i} .answerArea`).append(`
-        <button value = "${key}" class="btn__answer" data-banknum = "${canQuiz.questionInBankArr}">${currentQuestion.choices[key]}</button>`
-        );
-    };
+  // iterate twice for T/F and 4 times for M/C
+  for (key in currentQuestion.choices) {
+    // properties of question: value, class, data-bankQuestionNum
+    // key is "a" - "d"
+    $(`.question${i} .answerArea`).append(`
+        <button value = "${key}" class="btn__answer" data-banknum = "${i}">${
+      currentQuestion.choices[key]
+    }</button>`);
+  }
 };
 
 canQuiz.isAnswerCorrect = (clickedButton) => {
@@ -235,28 +235,16 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     const userAnswer = clickedButton.val();
 
     // -1 because question banknum starts from 0.
-    // const bankQuestionNum = clickedButton.data("banknum");
-    // const currentQuestion = canQuiz.masterQuestionListArr[bankQuestionNum];
-    // const correctAnswer = canQuiz.masterQuestionListArr[bankQuestionNum].correctChoice;
+    const bankQuestionNum = clickedButton.data("banknum") - 1;
+    const currentQuestion = canQuiz.shortList[bankQuestionNum];
+    const correctAnswer = canQuiz.shortList[bankQuestionNum].correctChoice;
     
-    // currentQuestion should be which index is this q in the masterArr?
-    const currentQuestion = canQuiz.masterQuestionListArr[canQuiz.questionInBankArr];
-    const correctAnswer = canQuiz.masterQuestionListArr[canQuiz.questionInBankArr].correctChoice;
-
-    // how do i select the correct answer??
+    
+    // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
     const correctAnswerButton = $(`.btn__answer[value="${correctAnswer}"][data-banknum="${canQuiz.questionInBankArr}]"`);
-    // console.log("correst answer button is  ", correctAnswerButton);
-    // // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
-    console.log("current question is ", currentQuestion)
-    console.log("user answer is ",userAnswer);
- 
-    
-    // console.log("the banknum of clicked button is ", bankQuestionNum);
-
-    // console.log("current ans should be", correctAnswer);
-    // if 
 
 
+    // show user if their answer is right or wrong
     if (correctAnswer === userAnswer) {
         canQuiz.incrementAndUpdateScore(clickedButton);
         clickedButton.addClass("btn--rightAns");
@@ -271,13 +259,14 @@ canQuiz.incrementAndUpdateScore = (clickedButton) => {
     // do not add a point if it's already been clicked.
     if(!clickedButton.hasClass('btn--rightAns')) {
         canQuiz.playerScore++;
-        // console.log(`add a point! Now you have ${canQuiz.playerScore} points`);
+        // show the update score in the bottom bar and in the final results area
         $('.scoreArea span').text(`${canQuiz.playerScore}`);
-
+        $(".text--finalScore span").text(`${canQuiz.playerScore}`);
     };
 };
 
 canQuiz.showCorrectAnswerDesc = (currentQuestion) => {
+    // put the right answer in the box and show the box
     const currentAnswerDesc = currentQuestion.answerDesc;
 
     const currentAnswerArea = `.question${canQuiz.playerAnsweringQuestion}`;
@@ -285,30 +274,59 @@ canQuiz.showCorrectAnswerDesc = (currentQuestion) => {
     
     $(currentAnswerArea + " .answerDescArea p").html(currentAnswerDesc);
     $(currentAnswerArea + " .answerDescArea").show();
+    $(currentAnswerArea + " .btn__next").show();
+
 };
 
 canQuiz.displayFinalResult = (finalScore) => {
+    // choose 3 possible tiers of results, which each have 3 random sentences
     const randNum = Math.floor(Math.random() * 3);
-    // console.log(finalScore);
     if(finalScore >= 5) {
-        $('.results p').text(canQuiz.masterResults.highScoreResults[randNum]);
+        $(".text--results").text(canQuiz.masterResults.highScoreResults[randNum]);
         console.log(`score is 5 or 6`);
     } else if (finalScore >= 3) {
-        $('.results p').text(canQuiz.masterResults.middleScoreResults[randNum]);
+        $(".text--results").text(canQuiz.masterResults.middleScoreResults[randNum]);
         console.log(`score is 3 or 4`);
     } else {
-        $(".results p").text(canQuiz.masterResults.lowScoreResults[randNum]);
+        $(".text--results").text(canQuiz.masterResults.lowScoreResults[randNum]);
         console.log(`score is 0, 1, 2`);
+    } 
+
+    //show results area
+    $('.resultsArea').show();
+    $(".scoreArea").hide();
+
+};
+
+canQuiz.dynamicAnimations = () => {
+  // call all animate.css functions
+  canQuiz.animationHover('.btn', 'rubberBand');
+};
+
+canQuiz.animationHover = (element, animation) => {
+    // https://codepen.io/tamak/pen/ApLcq
+  element = $(element);
+  element.hover(
+    function() {
+      element.addClass("animated " + animation);
+    },
+    function() {
+      //wait for animation to finish before removing classes
+      window.setTimeout(function() {
+        element.removeClass("animated " + animation);
+      }, 1000);
     }
+  );
 };
 
 $(function() {
 
 canQuiz.events();
 canQuiz.init();
-canQuiz.startQuiz();
+canQuiz.dynamicAnimations();
+// canQuiz.startQuiz();
 
-canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
+// canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
 
 
 

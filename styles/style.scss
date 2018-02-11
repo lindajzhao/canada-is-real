@@ -1,7 +1,7 @@
 @import 'normalize';
 @import 'variables';
-@import 'typography';
 @import 'mixins';
+@import 'typography';
 @import 'components';
 
 
@@ -9,11 +9,30 @@
 /*----------------------------------------
     all sections
 ----------------------------------------*/
+html, body {
+    height: 100%;
+}
+
+
 body {
     font-family: $text-font;
-    background: url('../assets/mountain-bg.jpg') center no-repeat;
-    background-size: cover;
     // min-height: 100vh;
+    // z-index: 20;
+    position: relative;
+}
+
+.bgParallax {
+    background: url('../assets/mountain-bg.jpg') center;
+    background-size: cover;
+    width: 100vw;
+    z-index: 10;
+    position: fixed;
+    height: 100%;
+}
+
+section, header, footer {
+    z-index: 20;
+    position: relative;
 }
 
 .wrapper {
@@ -46,45 +65,31 @@ header.wrapper {
 section {
     margin-bottom: 30px;
     padding: 40px 0;
-    
+    min-height: 100vh;
 }
 
 .wrap--small {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
+    position: relative; 
+    z-index: 20;
+
     @media (max-width:$break-med) {
         width: 95%;
-    }
-    
+    } 
 }
 
 img {
     width: 100%;
 }
 
-//----- JS classes
-
-// .hide {
-//     display: none;
-// }
-
-
-//------------
-
 .questionBlock {
     display: block;
     margin-top: 40px;
-    padding: 80px 0;
-    // height: 80vh;
+    padding: 80px 0 115px 0;
     position: relative; 
     z-index: 30;
 
-    .wrapper {
-    }
-
-    // &:first-of-type {
-    //     margin-top: 0;
-    // }
 }
 
 .answerArea {
@@ -94,6 +99,8 @@ img {
 .answerDescArea {
     width: 90%;
     margin-left: 5%;
+    // @extend animated;
+    // @extend rubberBand;
 
 }
 .scoreArea {
@@ -104,6 +111,8 @@ img {
     z-index: 100;
     min-height: 50px;
     padding: 10px 20px;
+    @include flexCenter(row);
+    border-top: 1px $color-dark solid;
 }
 
 
@@ -122,9 +131,33 @@ header {
 
 .description {
     margin-bottom: 0;
+    display: flex;
     .wrapper {
+        padding: 80px 0;
         @include flexCenter(column);
         min-height: 25vh;
         justify-content: space-around;
+    }
+}
+
+
+//---------------------
+// resultsArea
+// --------------------
+
+.resultsArea {
+    min-height: 100vh;
+    .wrap--small {
+        @include flexCenter(column);
+    }
+    .wrapper {
+        border-radius: 30px;
+        background: rgba($color-ac2, 0.8);
+        padding: 80px 0;
+    }
+
+    img {
+        width: 50%;
+        margin: 20px;
     }
 }

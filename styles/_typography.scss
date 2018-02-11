@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, p, a, ul, li, blockquote {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    text-transform: capitalize;
+    // text-transform: capitalize;
 }
 
 a:visited {
@@ -39,19 +39,20 @@ li {
 }
 
 
-
 //-------- HEADINGS-------------
-
-h1 {
-    font-family: $text-fancy;
-    font-size: 5rem;
-}
 
 .heading-- {
     &question {
         font-size: 3rem;
         margin-top: 20px;
+        line-height: 1.5;
     }
+
+    &siteTitle {
+    font-family: $text-fancy;
+    font-size: 5rem;
+    margin: 30px 0;
+}
 }
 //-------- DISPLAY -------------
 
@@ -60,27 +61,29 @@ h1 {
         font-family: $text-fancy;
         font-size: 30rem;
         position: absolute;
-        top: 200px;
+        top: 300px;
         left: -40px;
         z-index: 10;
         color: rgba($text-gray, 0.8);
         line-height: 0;
-        pointer-events:none;
     }
 }
 
 //--------TEXT-------
-
+p {
+    line-height: 1.4;
+}
 .text-- {
-    &questionDesc {
-        // font-style: italic;
-        // font-weight: 400;
+    &regular {
         font-size: 1.6rem;
+    }
+
+    &questionDesc {
+        font-size: 1.8rem;
         margin-top: 10px;
-        padding: 10px 30px 10px 60px;
+        padding: 20px 30px 20px 60px;
         background: $color-light;
         color: black;
-        // margin-left: 10%;
         display: inline-block;
         border-radius: 30px;
         position: relative;
@@ -100,5 +103,16 @@ h1 {
         padding: 40px 80px;
         width: 100%;
         background: lighten($color-light, 15);
+        @media (max-width: $break-small) {
+            padding: 24px 32px;
+        }
     }
+
+    &results {
+        @extend .heading--siteTitle;
+        margin-top: 0;
+        color: white;
+    }
+
+
 }

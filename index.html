@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
+    <!-- Google fonts, font awesome, animate.css -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900|Pacifico" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+
 
     <title>Is Canada Even Real?</title>
 </head>
 <body>
+    <div class="bgParallax"></div>
+
     <header>
         <nav>
 
@@ -18,14 +23,15 @@
     </header>
     <section class="description">
         <div class="wrapper">
-            <h1>Is Canada Even Real?</h1>
-            <button class="btn__play">Play The Game!</button>
+            <div class="wrap--small">
+                <h1 class="heading--siteTitle">Is Canada Even Real?</h1>
+                <p class="text--regular">Canada, home to 36.29 million humans, 8.8 millions cats,11,850 cattle, 347 million hectares of forest, 20% of the world's fresh water supply.</p>
+                <a href="#question1" class="btn__play btn" class="animated rubberBand">Play The Game!</a>
+            </div>
         </div>
     </section>
     <section class="quizArea">
-        <div class="scoreArea">Score: <span>0</span></div>
-
-        
+        <div class="scoreArea text--regular animated fadeInUp">Score: <span>0</span></div>
             <form>
             <div class="wrapper">
                 <div class="questionBlock question1" id="question1">
@@ -44,10 +50,10 @@
                             <!-- put either 2 or 4 options -->
                         </div>
 
-                        <div class="answerDescArea">
+                        <div class="answerDescArea animated bounceInDown">
                             <p class="text--answerDesc"></p>
-                            <a href="#question2" class="btn__next">Next Question!</a>
                         </div>
+                        <a href="#question2" class="btn__next btn">Next Question!</a>
                     </div>
                 </div>
             </div> 
@@ -69,10 +75,10 @@
                             <!-- <input type="radio" name="${title}" id="a/b/c/d" value="true/false"> -->
                             <!-- put either 2 or 4 options -->
                         </div>
-                        <div class="answerDescArea">
+                        <div class="answerDescArea animated bounceInDown">
                             <p class="text--answerDesc"></p>
-                            <a href="#question3" class="btn__next">Next Question!</a>
                         </div>
+                        <a href="#question3" class="btn__next btn">Next Question!</a>
 
                     </div>
                 </div>
@@ -95,10 +101,10 @@
                             <!-- <input type="radio" name="${title}" id="a/b/c/d" value="true/false"> -->
                             <!-- put either 2 or 4 options -->
                         </div>
-                        <div class="answerDescArea">
+                        <div class="answerDescArea animated bounceInDown">
                             <p class="text--answerDesc"></p>
-                            <a href="#question4" class="btn__next">Next Question!</a>
                         </div>
+                        <a href="#question4" class="btn__next btn">Next Question!</a>
                     </div>
                 </div>
             </div>
@@ -120,10 +126,10 @@
                             <!-- <input type="radio" name="${title}" id="a/b/c/d" value="true/false"> -->
                             <!-- put either 2 or 4 options -->
                         </div>
-                        <div class="answerDescArea hide">
+                        <div class="answerDescArea animated bounceInDown">
                             <p class="text--answerDesc"></p>
-                            <a href="#question5" class="btn__next">Next Question!</a>
                         </div>
+                        <a href="#question5" class="btn__next btn">Next Question!</a>
                     </div>
                 </div>
             </div>
@@ -144,10 +150,10 @@
                         <div class="answerArea">
                             <!-- generate .btn__answer -->
                         </div>
-                        <div class="answerDescArea">
+                        <div class="answerDescArea animated bounceInDown">
                             <p class="text--answerDesc"></p>
-                            <a href="#question6" class="btn__next">Next Question!</a>
                         </div>
+                        <a href="#question6" class="btn__next btn">Next Question!</a>
                     </div>
                 </div>
             </div>
@@ -170,10 +176,10 @@
                             <!-- <input type="radio" name="${title}" id="a/b/c/d" value="true/false"> -->
                             <!-- put either 2 or 4 options -->
                         </div>
-                        <div class="answerDescArea">
+                        <div class="answerDescArea animated bounceInDown">
                             <p class="text--answerDesc"></p>
-                            <a href="#results" class="btn__next btn__last">See Results!</a>
                         </div>
+                        <a href="#resultsArea" class="btn__last btn__next btn">How did I do?</a>
                     </div>
                 </div>
             </div>
@@ -181,25 +187,38 @@
         </form>
 
     </section>
-    <section class="results" id = "results">
-        <p></p>
-
+    <section class="resultsArea" id ="resultsArea">
+        <div class="wrapper">
+            <div class="wrap--small">
+                <p class="text--results"></p>
+                <p class="text--finalScore text--regular">
+                    Final Score: <span></span>!
+                </p>
+                <!-- TWITTER BUTTON EMBED -->
+                <img src="assets/moreYouKnow.jpg" alt="The More You Know">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Wow, I learned so many fun Canadian facts from @linda_omg. aka invite me to your next pub trivia night!"
+                    data-via="linda_omg" data-hashtags="canada151" data-show-count="false">Tweet</a>
+                
+                <a href="/index.html" class="btn btn__playAgain">Go another round!</a>
+            </div>
+        </div>
     </section>
-    <section class="credits">
 
-    </section>
     <footer>
 
 
     </footer>
 
-<!-- smoothscroll  plugin and jQuery plugin-->
+<!-- smoothscroll + jQuery plugin-->
 
 <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/12.1.5/js/smooth-scroll.min.js"></script>
 
 <script src="javascript/script.js"></script>
+
+<!-- twitter embed script -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
