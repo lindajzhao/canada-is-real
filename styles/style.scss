@@ -63,9 +63,12 @@ header.wrapper {
     width: 1px; }
 
 section {
+    min-height: 100vh;
+
+}
+section, footer .wrapper {
     margin-bottom: 30px;
     padding: 40px 0;
-    min-height: 100vh;
 }
 
 .wrap--small {
@@ -82,39 +85,6 @@ section {
 img {
     width: 100%;
 }
-
-.questionBlock {
-    display: block;
-    margin-top: 40px;
-    padding: 80px 0 115px 0;
-    position: relative; 
-    z-index: 30;
-
-}
-
-.answerArea {
-    margin-top: 50px;
-}
-
-.answerDescArea {
-    width: 90%;
-    margin-left: 5%;
-    // @extend animated;
-    // @extend rubberBand;
-
-}
-.scoreArea {
-    width: 100%;
-    background: white;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-    min-height: 50px;
-    padding: 10px 20px;
-    @include flexCenter(row);
-    border-top: 1px $color-dark solid;
-}
-
 
 //---------------------
 // header
@@ -140,6 +110,45 @@ header {
     }
 }
 
+//---------------------
+// Quiz Area
+//---------------------
+
+.questionBlock {
+    display: block;
+    margin-top: 40px;
+    padding: 80px 0 115px 0;
+    position: relative; 
+    z-index: 30;
+    > .wrap--small {
+        @include flexCenter(column);
+    }
+}
+
+.answerArea {
+    margin: 50px 0;
+    width: 80%;
+}
+
+.answerDescArea {
+    width: 90%;
+}
+
+.scoreArea {
+    width: 100%;
+    background: white;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    min-height: 50px;
+    padding: 10px 20px;
+    @include flexCenter(row);
+    border-top: 1px $color-dark solid;
+    span {
+        margin-left: 5px;
+    }
+}
+
 
 //---------------------
 // resultsArea
@@ -160,4 +169,19 @@ header {
         width: 50%;
         margin: 20px;
     }
+}
+
+// footer
+footer {
+    .wrapper {
+        width: 100%;
+        background: rgba(white, 0.9);
+    }
+}
+.icon--social i.fa {
+    font-size: 1.9rem;
+    color: #000;
+    font-weight: 400;
+    padding: 1rem;
+    transition: 0.5s all; 
 }

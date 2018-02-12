@@ -77,7 +77,8 @@ canQuiz.masterQuestionListArr = [
       c: "1-800-BVR-TOWN",
       d: "1-800-GO-LEAFS"
     },
-    answerDesc: "For those times you're really in the mood to wait on hold for 30 minutes. 😉"
+    answerDesc:
+      "Call 1-800-O-CANADA when you're really in the mood to wait on hold for 30 minutes. 😉"
   },
   {
     question:
@@ -92,7 +93,7 @@ canQuiz.masterQuestionListArr = [
       d: "The LongPen (for remote writing)"
     },
     answerDesc:
-      "Atwood invented the LongPen is that she wouldn't have to go on long book tours to greet fans and sign autographs."
+      "Atwood invented the LongPen she she could greet fans and sign autographs from home."
   },
   {
     question:
@@ -117,13 +118,26 @@ canQuiz.masterQuestionListArr = [
       b: "False"
     },
     answerDesc:
-      '<a href="https://www.reuters.com/article/us-maple/canada-put-wrong-maple-leaf-on-new-canadian-dollar-20-bill-expert-idUSBRE90H16S20130118">True! Angry experts claimed that the bills used a Norway species of maple rather than the sugar maple.</a>'
+      'True! Angry experts claimed that the bills used <a href="https://www.reuters.com/article/us-maple/canada-put-wrong-maple-leaf-on-new-canadian-dollar-20-bill-expert-idUSBRE90H16S20130118">a Norwegian species of maple rather than the sugar maple.</a>'
+  },
+  {
+    question: "Which of these popular celebs is NOT Canadian?",
+    questionDesc: "Pop quiz! Haha, get it?",
+    correctChoice: "a",
+    choices: {
+      a: "Lady Gaga",
+      b: "Keanu Reeves",
+      c: "Cobie Smulders",
+      d: "Pamela Anderson"
+    },
+    answerDesc:
+      "Lady Gaga was born in NYC. But it's ok, we still love her!"
   }
 ];
 
 canQuiz.masterResults = {
     lowScoreResults: ["Well... At least you learned something new!", "Brush up on your Canadiana, eh?", "Sorry you did not win, roll up the rim again!"],
-    middleScoreResults: ["Pretty good!", "You know your Canada!", "Not bad, eh!"],
+    middleScoreResults: ["Very impressive!", "You know your Canada!", "Not bad, eh!"],
     highScoreResults: ["True Patriot!", "Maple syrup flows through your veins!", "A Canadian Legend, eh?"],
 };
 
@@ -275,6 +289,8 @@ canQuiz.showCorrectAnswerDesc = (currentQuestion) => {
     $(currentAnswerArea + " .answerDescArea p").html(currentAnswerDesc);
     $(currentAnswerArea + " .answerDescArea").show();
     $(currentAnswerArea + " .btn__next").show();
+    window.scrollBy(0, 200);
+
 
 };
 
@@ -324,11 +340,5 @@ $(function() {
 canQuiz.events();
 canQuiz.init();
 canQuiz.dynamicAnimations();
-// canQuiz.startQuiz();
 
-// canQuiz.chooseBanknumArr(canQuiz.masterQuestionListArr);
-
-
-
-    
 }); // end of "ready"

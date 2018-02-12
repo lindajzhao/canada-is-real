@@ -24,42 +24,45 @@ button {
     margin-top: 40px;
 }
 
-.btn__answer {
-    padding: 1.5rem 2rem;
-    border: 5px solid transparent;
-    display: inline-block;
-    width: 100%;
-    margin-top: 10px;
-    min-height: 75px;
-    @include setFont(3rem, black, 400)
-}
+.btn {
+    &__answer {
+        padding: 1.5rem 2rem;
+        border: 5px solid transparent;
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        min-height: 75px;
+        @include setFont(3rem, black, 400)
+        &:enabled {
+            &:hover, &:focus {
+                background: rgba($color-ac2, 0.7);
+                color: white;
+            }
+        }
+    }   
 
-.btn__answer:enabled {
-    &:hover, &:focus {
-        background: rgba($color-ac2, 0.7);
+    &--rightAns {
+        border: 5px solid green;
+        background: rgba(green, 0.5);
         color: white;
     }
-}
 
-.btn--rightAns {
-    border: 5px solid green;
-    background: rgba(green, 0.5);
-    color: white;
-}
+    &--wrongAns {
+        border: 5px solid red;
+        background: rgba(red, 0.5);
+        color: white;
+    }
 
-.btn--wrongAns {
-    border: 5px solid red;
-    background: rgba(red, 0.5);
-    color: white;
-}
+    &__next {
+        @include btn($color-dark, white);
+    }
 
-.btn__next {
-    @include btn($color-dark, white);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
+    &__last {
+        @include btn($color-light, $color-dark);
+    }
 
-.btn__last {
-    @include btn($color-light, $color-dark);
-}
+    &__CTA {
+        @include btn($color-ac1, #fff);
+        margin-bottom: 0;
+    }
+};

@@ -46,12 +46,24 @@ li {
         font-size: 3rem;
         margin-top: 20px;
         line-height: 1.5;
+        text-align: left;
     }
 
     &siteTitle {
     font-family: $text-fancy;
     font-size: 5rem;
     margin: 30px 0;
+
+    &section {
+       @extend .heading--question; 
+    }
+
+    &footer {
+        font-size: 1.6rem;
+        a {
+            font-size: $color-ac1;
+        }
+    }
 }
 }
 //-------- DISPLAY -------------
@@ -76,6 +88,7 @@ p {
 .text-- {
     &regular {
         font-size: 1.6rem;
+        margin: 10px 0;
     }
 
     &questionDesc {
@@ -91,20 +104,24 @@ p {
         img {
             width: 49px;
             position: absolute;
-            left: 7px;
-            top: -8px;
+            left: -6px;
+            top: -5px;
             transform: rotate(-15deg);
         }
     }
 
     &answerDesc {
         @extend .text--questionDesc;
-        margin-top: 30px;
         padding: 40px 80px;
         width: 100%;
         background: lighten($color-light, 15);
+        text-align: left;
         @media (max-width: $break-small) {
             padding: 24px 32px;
+        }
+
+        a {
+            color: $color-ac1;
         }
     }
 
@@ -113,6 +130,26 @@ p {
         margin-top: 0;
         color: white;
     }
-
-
 }
+
+.icon--social i.fa {
+    transition: all .2s ease-in-out;
+    // font-size: 20px; 
+    &:hover {
+        color: $color-ac1;
+        transform: scale(1.2);
+    }
+}
+
+.link-- {
+    &footer {
+        color: $color-ac1;
+        &:hover, &:focus {
+            color: lighten($color-ac1, 2);
+        }
+        &:visited {
+            color: $color-ac1;
+        }
+    }
+}
+
