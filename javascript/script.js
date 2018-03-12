@@ -85,7 +85,7 @@ canQuiz.masterQuestionListArr = [
       "Atwood is also an inventor. Which of the following did she invent?",
     questionDesc:
       "Margaret Atwood is a prominent Canadian author, poet, feminist and activist!",
-    correctChoice: "",
+    correctChoice: "d",
     choices: {
       a: "Clothes hangers specifically for pants",
       b: "Magic Eye Technology (optical illusion posters)",
@@ -253,7 +253,7 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     const currentQuestion = canQuiz.shortList[bankQuestionNum];
     const correctAnswer = canQuiz.shortList[bankQuestionNum].correctChoice;
     
-    
+    console.log(bankQuestionNum);
     // get the data-banknum associated with this question (dynamically added with populateAnswerField() )
     const correctAnswerButton = $(`.btn__answer[value="${correctAnswer}"][data-banknum="${canQuiz.questionInBankArr}]"`);
 

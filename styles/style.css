@@ -213,17 +213,17 @@ p {
 
 .text--results {
   margin-top: 0;
-  color: white; }
+  color: black; }
 
-.icon--social .fa {
+.icon--social i.fa {
   -webkit-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out; }
-  .icon--social .fa:hover {
+  .icon--social i.fa:hover {
     color: #678EB5;
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1); }
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2); }
 
 .link--footer {
   color: #678EB5; }
@@ -334,7 +334,7 @@ body {
   position: relative; }
 
 .bgParallax {
-  background: url("../assets/mountain-bg.jpg") center;
+  background: url("../assets/hero-min.jpg") center;
   background-size: cover;
   width: 100vw;
   z-index: 10;
@@ -371,7 +371,7 @@ section, header, footer {
 section {
   min-height: 100vh; }
 
-section, footer .wrapper {
+section, .footerWrapper {
   margin-bottom: 30px;
   padding: 40px 0; }
 
@@ -503,7 +503,8 @@ header {
   -ms-flex-direction: row;
   flex-direction: row;
   text-align: center;
-  border-top: 1px #003049 solid; }
+  border-top: 1px #003049 solid;
+  margin: 0; }
   .scoreArea span {
     margin-left: 5px; }
 
@@ -536,7 +537,7 @@ header {
     width: 50%;
     margin: 20px; }
 
-footer .wrapper {
+.footerWrapper {
   width: 100%;
   background: rgba(255, 255, 255, 0.9); }
 

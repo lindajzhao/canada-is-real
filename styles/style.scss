@@ -5,7 +5,6 @@
 @import 'components';
 
 
-
 /*----------------------------------------
     all sections
 ----------------------------------------*/
@@ -22,7 +21,7 @@ body {
 }
 
 .bgParallax {
-    background: url('../assets/mountain-bg.jpg') center;
+    background: url('../assets/hero-min.jpg') center;
     background-size: cover;
     width: 100vw;
     z-index: 10;
@@ -66,7 +65,7 @@ section {
     min-height: 100vh;
 
 }
-section, footer .wrapper {
+section, .footerWrapper {
     margin-bottom: 30px;
     padding: 40px 0;
 }
@@ -144,6 +143,7 @@ header {
     padding: 10px 20px;
     @include flexCenter(row);
     border-top: 1px $color-dark solid;
+    margin:0;
     span {
         margin-left: 5px;
     }
@@ -172,11 +172,10 @@ header {
 }
 
 // footer
-footer {
-    .wrapper {
-        width: 100%;
-        background: rgba(white, 0.9);
-    }
+
+.footerWrapper {
+    width: 100%;
+    background: rgba(white, 0.9);
 }
 .icon--social i.fa {
     font-size: 1.9rem;
