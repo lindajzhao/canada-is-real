@@ -142,8 +142,6 @@ canQuiz.masterResults = {
 };
 
 canQuiz.playerScore = 0;
-canQuiz.playerAnsweringQuestion = 1;
-
 
 canQuiz.events = () => {
     // when play button is pressed, startQuiz()
@@ -159,10 +157,6 @@ canQuiz.events = () => {
       canQuiz.isAnswerCorrect($(this));
       // once user clicks one answer button, disable all answer buttons for that question
       $(`.btn__answer[data-banknum="${$(this).data('banknum')}"]`).attr("disabled", true);
-        // console.log(this);
-          
-        //increment counter
-        canQuiz.playerAnsweringQuestion++;
     });
 
     // when last answer is chosen, show final score and results
@@ -265,7 +259,7 @@ canQuiz.isAnswerCorrect = (clickedButton) => {
     } else {
         clickedButton.addClass("btn--wrongAns");
     }
-    canQuiz.showCorrectAnswerDesc(currentQuestion);
+    canQuiz.showCorrectAnswerDesc(currentQuestion, bankQuestionNum);
 
 };
     
@@ -279,11 +273,11 @@ canQuiz.incrementAndUpdateScore = (clickedButton) => {
     };
 };
 
-canQuiz.showCorrectAnswerDesc = (currentQuestion) => {
+canQuiz.showCorrectAnswerDesc = (currentQuestion, currentArea) => {
     // put the right answer in the box and show the box
     const currentAnswerDesc = currentQuestion.answerDesc;
 
-    const currentAnswerArea = `.question${canQuiz.playerAnsweringQuestion}`;
+    const currentAnswerArea = `.question${currentArea + 1}`;
 
     
     $(currentAnswerArea + " .answerDescArea p").html(currentAnswerDesc);

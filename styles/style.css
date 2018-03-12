@@ -215,6 +215,9 @@ p {
   margin-top: 0;
   color: black; }
 
+.text--finalScore {
+  font-size: 2rem; }
+
 .icon--social i.fa {
   -webkit-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
